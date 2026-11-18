@@ -1,5 +1,5 @@
 #include "push_swap.h"
-#include <stdio.h>
+// #include <stdio.h>
 static int valid_number(char *num)
 {
 	int		i;
@@ -38,7 +38,7 @@ int main(int argc ,char **argv)
     if(argc == 1)
         return 0;
     t_stack a;
-    //t_stack b;
+    t_stack b;
     int i = 0;
     int j = 0;
     a.capacity = argc - 1;
@@ -46,11 +46,20 @@ int main(int argc ,char **argv)
     if (!a.data)
         return 0;
     a.size = 0;
+    b.capacity = a.capacity;
+    b.data = malloc(sizeof(int) * b.capacity);
+    if(!b.data)
+    {
+        free(a.data);
+        return 0;
+    }
+    b.size = 0;
     while (argc - 1 > i)
     {
     if (!valid_number(argv[i + 1]))
     {
         free(a.data);
+        free(b.data);
         write(2, "Error\n", 6);
         return (1);
     }
@@ -67,6 +76,7 @@ int main(int argc ,char **argv)
             if (a.data[i] == a.data[j])
             {
                 free(a.data);
+                free(b.data);
                 write(2, "Error\n", 6);
                 return 1;
             }
@@ -75,5 +85,6 @@ int main(int argc ,char **argv)
         i++;
     }
     free(a.data);
+    free(b.data);
     return 0;
 }
