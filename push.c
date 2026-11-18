@@ -10,7 +10,7 @@ static void    deletefisrt(t_stack *b)
     if(b->size != 0)
         b->size--;
 }
-static void addfirst(t_stack *a ,int val)//  [val] 1 1 2 3 [4]
+static void addfirst(t_stack *a ,int val)
 {
     if (a->size >= a->capacity)
         return;
