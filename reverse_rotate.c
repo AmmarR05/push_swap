@@ -1,33 +1,39 @@
 #include "push_swap.h"
+static void reverse_rotate(t_stack *stack)
+{
+	int temp;
+    int size;
 
+    if (stack->size < 2)
+        return;
+    temp = stack->data[stack->size - 1];
+    size = stack->size - 1;
+    while (size > 0)
+    {
+        stack->data[size] = stack->data[size - 1];
+        size--;
+    }
+    stack->data[0] = temp;
+}
 void    rra(t_stack *a)
 {
     if (a->size < 2)
         return;
-    int temp = a->data[a->size - 1];
-    int size = a->size - 1;
-    while (size > 0)
-    {
-        a->data[size] = a->data[size - 1];
-        size--;
-    }
-    a->data[0] = temp;
+    reverse_rotate(a);
+	write(1,"rra\n",4);
 }
 void    rrb(t_stack *b)
 {
     if (b->size < 2)
         return;
-    int temp = b->data[b->size - 1];
-    int size = b->size - 1;
-    while (size > 0)
-    {
-        b->data[size] = b->data[size - 1];
-        size--;
-    }
-    b->data[0] = temp;
+    reverse_rotate(b);
+	write(1,"rrb\n",4);
 }
-void    rrr(t_stack *a, t_stack *b)
+void rrr(t_stack *a, t_stack *b)
 {
-    rra(a);
-    rrb(b);
+    if (a->size < 2 && b->size < 2)
+        return;
+    reverse_rotate(a);
+    reverse_rotate(b);
+    write(1, "rrr\n", 4);
 }

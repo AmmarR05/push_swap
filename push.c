@@ -30,6 +30,7 @@ void	pa(t_stack *a, t_stack *b)
     int top_b = b->data[0];
     deletefisrt(b);
     addfirst(a,top_b);
+	write(1,"pa\n",3);
 }
 void    pb(t_stack *a, t_stack *b)
 {
@@ -38,6 +39,7 @@ void    pb(t_stack *a, t_stack *b)
     int top_a = a->data[0];
     deletefisrt(a);
     addfirst(b,top_a);
+	write(1,"pb\n",3);
 }
 
 

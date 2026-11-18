@@ -41,6 +41,7 @@ int main(int argc ,char **argv)
     t_stack b;
     int i = 0;
     int j = 0;
+	double disorder = compute_disorder(&a); 
     a.capacity = argc - 1;
     a.data = malloc(sizeof(int) * a.capacity);
     if (!a.data)
@@ -84,6 +85,16 @@ int main(int argc ,char **argv)
         }
         i++;
     }
+	if (disorder == 0.0)
+	{
+    	free(a.data);
+    	free(b.data);
+    	return (0);
+	}
+
+	if (disorder < 0.2)
+    	min_max_sort(&a, &b);
+
     free(a.data);
     free(b.data);
     return 0;
