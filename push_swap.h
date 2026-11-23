@@ -8,7 +8,7 @@
 typedef struct s_stack
 {
 	int	*data;
-	int	size;
+	int	size;	
 	int	capacity;
 }	t_stack;
 
@@ -36,5 +36,10 @@ double	compute_disorder(t_stack *a);
 
 /*sort algo*/
 void min_max_sort(t_stack *a, t_stack *b);
+
+/*flag*/
+int number_of_flag(int argc ,char **argv);
+int get_strategy(int argc, char **argv);
+int valid_flags(int argc, char **argv);
 
 #endif

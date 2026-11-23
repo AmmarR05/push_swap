@@ -8,7 +8,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = main.c swap.c push.c rotate.c reverse_rotate.c \
-       simple_sort.c disorder.c
+       simple_sort.c disorder.c flag.c
 
 OBJS = $(SRCS:.c=.o)
 
