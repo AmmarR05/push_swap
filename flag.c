@@ -58,3 +58,15 @@ int valid_flags(int argc, char **argv)
     }
     return (1);
 }
+int get_bench(int argc, char **argv)
+{
+    int bench;
+
+    bench = 0;
+    if (argc < 2)
+        return (0);
+    if (ft_strncmp(argv[1], "--bench", 8) == 0 || (argc > 2 && ft_strncmp(argv[2], "--bench", 8) == 0))
+        bench = 1;
+    return (bench);
+}
+//print_benchmark ->

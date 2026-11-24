@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
+#include "ft_printf/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -41,5 +42,6 @@ void min_max_sort(t_stack *a, t_stack *b);
 int number_of_flag(int argc ,char **argv);
 int get_strategy(int argc, char **argv);
 int valid_flags(int argc, char **argv);
+int get_bench(int argc, char **argv);
 
 #endif

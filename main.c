@@ -47,11 +47,18 @@ int main(int argc ,char **argv)
     t_stack b;
     int i = 0;
     int j = 0;
+    int flag;
+    int bench;
 	double disorder; 
     a.capacity = argc - number_of_flag(argc , argv) - 1;
+    if (a.capacity <= 0)
+    {
+        write(2, "Error\n", 6);
+        return (1);
+    }
     a.data = malloc(sizeof(int) * a.capacity);
     if (!a.data)
-        return 0;
+        return 1;
     a.size = 0;
     b.capacity = a.capacity;
     b.data = malloc(sizeof(int) * b.capacity);
@@ -92,12 +99,34 @@ int main(int argc ,char **argv)
         i++;
     }
     disorder = compute_disorder(&a);
+    flag = get_strategy(argc, argv);
+    int temp = flag;
+    bench = get_bench(argc, argv);
 	if (disorder == 0.0)
 	{
+        if (bench == 1)
+            print_bench();
     	free(a.data);
     	free(b.data);
-    	return (0);
+    	return (1);
 	}
+    if (flag == 0)
+    {
+        if(disorder < 0.2)
+           flag = 1;
+        else if(disorder < 0.5)
+            flag = 2;
+        else
+            flag = 3;
+    }
+    if(flag == 1)
+        min_max_sort(&a, &b);//the simple sort
+    else if (flag == 2)
+        //chunk_sort(&a, &b); the medium sort
+    else
+        //complex_sort(&a, &b); the complex sort
+    if(bench == 1)
+        //print_benchmark(disorder ,temp);
     free(a.data);
     free(b.data);
     return 0;
