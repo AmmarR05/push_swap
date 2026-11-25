@@ -14,7 +14,7 @@ static int find_min(t_stack *a)
 	return min;
 }
 
-void min_max_sort(t_stack *a, t_stack *b)
+void min_max_sort(t_stack *a, t_stack *b , t_stats *stats)
 {
 	int min;
 	if(a->size == 0)
@@ -24,13 +24,13 @@ void min_max_sort(t_stack *a, t_stack *b)
 	{
 		if(a->data[0] == min)
 		{
-			pb(a, b);
+			pb(a, b,stats);
 			if(a->size != 0)
 				min = find_min(a);
 		}
 		else
-			ra(a);
+			ra(a,stats);
 	}
 	while (b->size > 0)
-		pa(a,b);
+		pa(a,b,stats);
 }

@@ -1,5 +1,4 @@
 #include "push_swap.h"
-// #include <stdio.h>
 static int valid_number(char *num)
 {
 	int		i;
@@ -49,7 +48,8 @@ int main(int argc ,char **argv)
     int j = 0;
     int flag;
     int bench;
-	double disorder; 
+	double disorder;
+    t_stats stats = {0}; 
     a.capacity = argc - number_of_flag(argc , argv) - 1;
     if (a.capacity <= 0)
     {
@@ -65,7 +65,7 @@ int main(int argc ,char **argv)
     if(!b.data)
     {
         free(a.data);
-        return 0;
+        return 1;
     }
     b.size = 0;
     while (a.capacity > i)
@@ -100,16 +100,8 @@ int main(int argc ,char **argv)
     }
     disorder = compute_disorder(&a);
     flag = get_strategy(argc, argv);
-    int temp = flag;
+    int real_flag = flag;
     bench = get_bench(argc, argv);
-	if (disorder == 0.0)
-	{
-        if (bench == 1)
-            print_bench();
-    	free(a.data);
-    	free(b.data);
-    	return (1);
-	}
     if (flag == 0)
     {
         if(disorder < 0.2)
@@ -119,14 +111,22 @@ int main(int argc ,char **argv)
         else
             flag = 3;
     }
+    if (disorder == 0.0)
+	{
+        if (bench == 1){}
+            //print_benchmark(disorder ,flag,real_flag,&stats);
+    	free(a.data);
+    	free(b.data);
+    	return (0);
+	}
     if(flag == 1)
-        min_max_sort(&a, &b);//the simple sort
-    else if (flag == 2)
-        //chunk_sort(&a, &b); the medium sort
-    else
-        //complex_sort(&a, &b); the complex sort
+        min_max_sort(&a, &b, &stats);//the simple sort
+    else if (flag == 2){}
+        //the med sort
+    else{}
+        //the complex sort
     if(bench == 1)
-        //print_benchmark(disorder ,temp);
+        print_benchmark(disorder , flag, real_flag, &stats);
     free(a.data);
     free(b.data);
     return 0;

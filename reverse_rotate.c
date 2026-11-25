@@ -15,25 +15,28 @@ static void reverse_rotate(t_stack *stack)
     }
     stack->data[0] = temp;
 }
-void    rra(t_stack *a)
+void    rra(t_stack *a, t_stats *stats)
 {
     if (a->size < 2)
         return;
     reverse_rotate(a);
+    stats->rra++;
 	write(1,"rra\n",4);
 }
-void    rrb(t_stack *b)
+void    rrb(t_stack *b, t_stats *stats)
 {
     if (b->size < 2)
         return;
     reverse_rotate(b);
+    stats->rrb++;
 	write(1,"rrb\n",4);
 }
-void rrr(t_stack *a, t_stack *b)
+void rrr(t_stack *a, t_stack *b, t_stats *stats)
 {
     if (a->size < 2 && b->size < 2)
         return;
     reverse_rotate(a);
     reverse_rotate(b);
+    stats->rrr++;
     write(1, "rrr\n", 4);
 }

@@ -11,7 +11,7 @@ PRINTF_DIR = ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 SRCS = main.c swap.c push.c rotate.c reverse_rotate.c \
-       simple_sort.c disorder.c flag.c
+       simple_sort.c disorder.c flag.c bench.c
 
 OBJS = $(SRCS:.c=.o)
 

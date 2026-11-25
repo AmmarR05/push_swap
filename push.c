@@ -23,22 +23,24 @@ static void addfirst(t_stack *a ,int val)
     a->data[0] = val;
     a->size++;
 }
-void	pa(t_stack *a, t_stack *b)
+void	pa(t_stack *a, t_stack *b, t_stats *stats)
 {
     if(b->size == 0 || a->size >= a->capacity)
         return;
     int top_b = b->data[0];
     deletefisrt(b);
     addfirst(a,top_b);
+    stats->pa++;
 	write(1,"pa\n",3);
 }
-void    pb(t_stack *a, t_stack *b)
+void    pb(t_stack *a, t_stack *b,t_stats *stats)
 {
     if(a->size == 0 || b->size >= b->capacity)
         return;
     int top_a = a->data[0];
     deletefisrt(a);
     addfirst(b,top_a);
+    stats->pb++;
 	write(1,"pb\n",3);
 }
 
